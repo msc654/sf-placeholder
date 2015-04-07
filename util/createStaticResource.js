@@ -1,4 +1,6 @@
 var jsforce = require('jsforce');
+var settings = require('../config/settings.js');
+var page = require('./createApexPage.js');
 var b64Resource = 'UEsDBAoAAAAAAJtRh0YAAAAAAAAAAAAAAAAMABAAcGxhY2Vob2xkZXIvVVgMAOXlI1Xl5SNV9QEUAFBLAQIVAwoAAAAAAJtRh0YAAAAAAAAAAAAAAAAMAAwAAAAAAAAAAEDtQQAAAABwbGFjZWhvbGRlci9VWAgA5eUjVeXlI1VQSwUGAAAAAAEAAQBGAAAAOgAAAAAA';
 
 module.exports = {
@@ -6,7 +8,7 @@ module.exports = {
     buildStaticResource : function(pageName){
 
         var conn = new jsforce.Connection();
-        conn.login('matt+icix-matt-dev1@codescience.com', 'Science1UMcPpMA746aGQ4JPVBErM6Eig', function(err, res) {
+        conn.login(settings.getUserName(),'' + settings.getPassword() + ''+ settings.getToken(), function(err, res) {
          // creating metadata in array
             var metadata = [{
               fullName: pageName,
@@ -15,16 +17,22 @@ module.exports = {
               cacheControl: 'Private'
             }];
             conn.metadata.create('StaticResource', metadata, function(err, results) {
-              if (err) { console.log(err); }
-              console.log(results);
+                if (err) { 
 
-              return 'success';
+                    console.log(err);
+                    console.log(results); 
 
-              for (var i=0; i < results.length; i++) {
-                var result = results[i];
-                console.log('success ? : ' + result.success);
-                console.log('fullName : ' + result.fullName);
-              }
+                } else {
+                    
+                    if(results.success === true){
+                        console.log('New Static Resouce: ' + results.fullName + ' created!');
+                        page.buildPage(pageName);
+                    }else{
+                        console.log(results);
+                    }
+
+                }
+           
             });
         });
      

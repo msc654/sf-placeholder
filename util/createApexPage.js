@@ -1,4 +1,5 @@
 var jsforce = require('jsforce');
+var settings = require('../config/settings.js');
 var btoa = require('btoa');
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
         page        +=              '<!-- <title>spa</title> -->';
         page        +=              '<meta name="description" content=""/>';
         page        +=              '<meta name="viewport" content="width=device-width"/>';
-        page        +=              '<ink href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">';
+        page        +=              '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />';
         page        +=              '<apex:includeScript value="{!URLFOR($Resource.' + pageName + ', "/bundle.js")}"/>';
         page        +=              '<script type="text/javascript">';
         page        +=                  'if(document.URL.indexOf("force") > 0) {';
@@ -39,30 +40,35 @@ module.exports = {
         var b64Page = btoa(page);
 
         var conn = new jsforce.Connection();
-        conn.login('matt+icix-matt-dev1@codescience.com', 'Science1UMcPpMA746aGQ4JPVBErM6Eig', function(err, res) {
+        conn.login(settings.getUserName(),'' + settings.getPassword() + ''+ settings.getToken(), function(err, res) {
          // creating metadata in array
             var metadata = [{
               fullName: pageName,
               label: pageName,
               content: b64Page,
-              description : 'A tests visualforce page'
+              description : 'A visualforce page'
             }];
             conn.metadata.create('ApexPage', metadata, function(err, results) {
-              if (err) { console.err(err); }
-              console.log(results);
 
-              return 'success';
+                if (err) { 
 
-              for (var i=0; i < results.length; i++) {
-                var result = results[i];
-                console.log('success ? : ' + result.success);
-                console.log('fullName : ' + result.fullName);
-              }
+                    console.log(err);
+                    console.log(results); 
+
+                } else {
+                    
+                    if(results.success === true){
+                        console.log('New Visualforce Page: ' + results.fullName + ' created!');
+                    }else{
+                        console.log(results);
+                    }
+
+                }
+                
             });
         });
 
         
-      
     }
 
 };

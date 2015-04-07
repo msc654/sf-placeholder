@@ -1,11 +1,19 @@
-//var settings = require('./config/settings.js');
+var settings = require('./config/settings.js');
 var resource = require('./util/createStaticResource.js');
-var page = require('./util/createApexPage.js');
 
-resource.buildStaticResource('SecondPageTest');
+module.exports = {
 
-//page.buildPage('SecondPageTest');
-
-
-//settings.setUserName('Jimmy');
-//console.log(settings.getUserName())
+    defineUserName : function(username){
+        settings.setUserName(username);
+    },
+    definePassword : function(password){
+        settings.setPassword(password);
+    },
+    defineToken : function(token){
+        settings.setToken(token);
+    },
+    setupPageAndResource : function(name){
+        resource.buildStaticResource(name);
+    }  
+    
+};
