@@ -16,6 +16,7 @@
   "author": "Matthew Carroll <msc654@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "btoa": "^1.1.2",
     "jsforce": "^1.4.1"
   }
 }

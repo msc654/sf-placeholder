@@ -1,5 +1,11 @@
-var settings = require('./config/settings.js');
+//var settings = require('./config/settings.js');
+var resource = require('./util/createStaticResource.js');
+var page = require('./util/createApexPage.js');
 
-settings.setUserName('Jimmy');
+resource.buildStaticResource('SecondPageTest');
 
-console.log(settings.getUserName())
+//page.buildPage('SecondPageTest');
+
+
+//settings.setUserName('Jimmy');
+//console.log(settings.getUserName())
