@@ -1,7 +1,7 @@
 {
   "name": "sf-placeholder",
   "version": "1.0.0",
-  "description": "A util to create an ApexPages and a placeholder Static Resources for use with Angular JS",
+  "description": "Creates a Visualforce Page and placeholder Static Resource for use with Angular JS.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
