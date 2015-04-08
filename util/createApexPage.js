@@ -14,7 +14,7 @@ module.exports = {
         page        +=              '<meta name="description" content=""/>';
         page        +=              '<meta name="viewport" content="width=device-width"/>';
         page        +=              '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />';
-        page        +=              '<apex:includeScript value="{!URLFOR($Resource.' + pageName + ', "/bundle.js")}"/>';
+        page        +=              '<apex:includeScript value="{!URLFOR($Resource.' + pageName + ', "bundle.js")}"/>';
         page        +=              '<script type="text/javascript">';
         page        +=                  'if(document.URL.indexOf("force") > 0) {';
         page        +=                      'staticURL = "{!$Resource.' + pageName + '}";';
