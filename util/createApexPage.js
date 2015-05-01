@@ -34,7 +34,7 @@ module.exports = {
         page        +=          '</head>';
         page        +=          '<body ng-app="app">';
         page        +=              '<div ng-controller="MainController">';
-        page        +=                  '<preview-form></preview-form>';
+        page        +=                  '<ui-view></ui-view>';
         page        +=              '</div>';
         page        +=          '</body>';
         page        +=     '</html>';
