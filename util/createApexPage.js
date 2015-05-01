@@ -9,6 +9,7 @@ module.exports = {
         var page    = '<apex:page showHeader="false" sidebar="false" standardStylesheets="false" cache="false" expires="0" >'
         page        +=     '<html class="no-js">';
         page        +=          '<head>';
+        page        +=              '<base href="/'+pageName+'" target="_blank" />'
         page        +=              '<meta charset="utf-8"/>';
         page        +=              '<!-- <title>spa</title> -->';
         page        +=              '<meta name="description" content=""/>';
@@ -16,6 +17,8 @@ module.exports = {
         page        +=              '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />';
         page        +=              '<apex:includeScript value="{!URLFOR($Resource.'+pageName+',\'bundle.js\')}"/>';
         page        +=              '<script type="text/javascript">';
+        page        +=                  'var path = window.location.pathname';
+        page        +=                  'var page = path.split("/").pop()';
         page        +=                  'if(document.URL.indexOf("force") > 0) {';
         page        +=                      'staticURL = "{!$Resource.' + pageName + '}";';
         page        +=                  '}else{';
@@ -24,7 +27,8 @@ module.exports = {
         page        +=                  'configSettings = {';
         page        +=                      'staticPath: staticURL,';
         page        +=                      'config: {},';
-        page        +=                      'remoteActions: {}';
+        page        +=                      'remoteActions: {},';
+        page        +=                      'baseName: page'
         page        +=                      '};';
         page        +=              '</script>';
         page        +=          '</head>';
