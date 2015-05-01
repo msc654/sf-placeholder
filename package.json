@@ -1,6 +1,6 @@
 {
   "name": "sf-placeholder",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Creates a Visualforce Page and placeholder Static Resource for use with Angular JS.",
   "main": "index.js",
   "scripts": {

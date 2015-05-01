@@ -17,8 +17,8 @@ module.exports = {
         page        +=              '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />';
         page        +=              '<apex:includeScript value="{!URLFOR($Resource.'+pageName+',\'bundle.js\')}"/>';
         page        +=              '<script type="text/javascript">';
-        page        +=                  'var path = window.location.pathname';
-        page        +=                  'var page = path.split("/").pop()';
+        page        +=                  'var path = window.location.pathname;';
+        page        +=                  'var page = path.split("/").pop();';
         page        +=                  'if(document.URL.indexOf("force") > 0) {';
         page        +=                      'staticURL = "{!$Resource.' + pageName + '}";';
         page        +=                  '}else{';
